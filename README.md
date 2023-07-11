@@ -45,7 +45,7 @@ php artisan serve
 Requisições para a API devem seguir os padrões:
 | Método | Rota | Descrição |
 |---|---|---|
-| `POST` | /register | Rota para registrar um usuário |
+| `POST` | /api/register | Rota para registrar um usuário |
 ```json
 {
   "name": "Nome do usuário",
@@ -53,7 +53,14 @@ Requisições para a API devem seguir os padrões:
   "password": "developer"
 }
 ```
+|---|---|---|
 | `POST` | /login | Rota para fazer login |
+```json
+{
+  "email": "dwmom@hotmail.com",
+  "password": "developer"
+}
+```
 | `POST` | /logout | Rota para fazer logout |
 | `POST` | /stores | Rota para cadastrar uma Loja |
 | `GET` | /stores | Rota para listar todas as rotas |
