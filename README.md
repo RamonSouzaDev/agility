@@ -44,7 +44,7 @@ php artisan serve
 ## Métodos
 Requisições para a API devem seguir os padrões:
 | Método | Rota | Descrição |
-|---|---|
+|---|---|---|
 | `POST` | /register | Rota para registrar um usuário |
 | `POST` | /login | Rota para fazer login |
 | `POST` | /logout | Rota para fazer logout |
