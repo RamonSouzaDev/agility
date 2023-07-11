@@ -38,3 +38,18 @@ php artisan migrate
 
 7. Execute o projeto
 php artisan serve
+
+- **Rotas**
+
+## Métodos
+Requisições para a API devem seguir os padrões:
+| Método | Rota | Descrição |
+|---|---|
+| `POST` | /register | Rota para registrar um usuário |
+| `POST` | /login | Rota para fazer login |
+| `POST` | /logout | Rota para fazer logout |
+| `POST` | /stores | Rota para cadastrar uma Loja |
+| `GET` | /stores | Rota para listar todas as rotas |
+| `GET` | /stores/stores | Rota para listar as Lojas do usuário logado |
+| `PUT` | '/stores/{store} | Rota para Editar uma Loja|
+| `DELETE` | '/stores/{store} | Rota para deletar uma Loja |
