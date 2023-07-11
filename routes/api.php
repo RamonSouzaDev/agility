@@ -25,3 +25,4 @@ Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:sanc
 Route::post('/stores', [StoreController::class, 'store'])->middleware('auth:sanctum');
 Route::get('/stores', [StoreController::class, 'index'])->middleware('auth:sanctum');
 Route::put('/stores/{store}', [StoreController::class, 'update'])->middleware('auth:sanctum');
+Route::delete('/stores/{store}', [StoreController::class, 'destroy'])->middleware('auth:sanctum');

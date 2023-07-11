@@ -73,6 +73,20 @@ class StoreController extends Controller
         return response()->json(['message' => 'Store updated successfully', 'store' => $store], 200);
     }
 
+    public function destroy(Request $request, Store $store)
+    {
+        // Verificar se o usuário logado é o proprietário da loja
+        $user = Auth::user();
+        if ($store->user_id !== $user->id) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
+        // Excluir a loja
+        $store->delete();
+
+        return response()->json(['message' => 'Store deleted successfully'], 200);
+    }
+
     public function index(Request $request)
     {
         $user = Auth::user();
