@@ -46,6 +46,13 @@ Requisições para a API devem seguir os padrões:
 | Método | Rota | Descrição |
 |---|---|---|
 | `POST` | /register | Rota para registrar um usuário |
+```json
+{
+  "name": "Nome do usuário",
+  "email": "emaildousuario@hotmail.com",
+  "password": "developer"
+}
+```
 | `POST` | /login | Rota para fazer login |
 | `POST` | /logout | Rota para fazer logout |
 | `POST` | /stores | Rota para cadastrar uma Loja |
