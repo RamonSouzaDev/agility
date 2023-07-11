@@ -40,6 +40,39 @@ class StoreController extends Controller
         return response()->json(['message' => 'Store created successfully', 'store' => $store], 201);
     }
 
+    public function update(Request $request, Store $store)
+    {
+        $request->validate([
+            'name' => 'required',
+            'cep' => 'required|regex:/^\d{5}-\d{3}$/',
+        ]);
+
+        $cep = str_replace('-', '', $request->cep);
+        $response = Http::get("https://viacep.com.br/ws/{$cep}/json/");
+        $data = $response->json();
+
+        if (isset($data['erro'])) {
+            return response()->json(['message' => 'Invalid CEP'], 422);
+        }
+
+        // Verificar se o usuário logado é o proprietário da loja
+        $user = Auth::user();
+        if ($store->user_id !== $user->id) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
+        // Atualizar os dados da loja
+        $store->update([
+            'name' => $request->name,
+            'cep' => $request->cep,
+            'street' => $data['logradouro'],
+            'neighborhood' => $data['bairro'],
+            'city' => $data['localidade'],
+        ]);
+
+        return response()->json(['message' => 'Store updated successfully', 'store' => $store], 200);
+    }
+
     public function index(Request $request)
     {
         $user = Auth::user();

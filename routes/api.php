@@ -24,3 +24,4 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
 Route::post('/stores', [StoreController::class, 'store'])->middleware('auth:sanctum');
 Route::get('/stores', [StoreController::class, 'index'])->middleware('auth:sanctum');
+Route::put('/stores/{store}', [StoreController::class, 'update'])->middleware('auth:sanctum');
