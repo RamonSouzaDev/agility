@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\WelcomeEmail;
 
 class UserController extends Controller
 {
@@ -22,6 +23,9 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
+
+        // Enviar o email de boas-vindas
+        Mail::to($user->email)->send(new WelcomeEmail());
 
         return response()->json(['message' => 'User registered successfully', 'user' => $user], 201);
     }
