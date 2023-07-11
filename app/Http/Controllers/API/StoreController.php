@@ -89,6 +89,13 @@ class StoreController extends Controller
 
     public function index(Request $request)
     {
+        $stores = Store::all();
+
+        return response()->json(['stores' => $stores], 200);
+    }
+
+    public function userStores(Request $request)
+    {
         $user = Auth::user();
         $stores = $user->stores;
 

@@ -15,10 +15,6 @@ use App\Http\Controllers\API\UserController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
@@ -26,3 +22,4 @@ Route::post('/stores', [StoreController::class, 'store'])->middleware('auth:sanc
 Route::get('/stores', [StoreController::class, 'index'])->middleware('auth:sanctum');
 Route::put('/stores/{store}', [StoreController::class, 'update'])->middleware('auth:sanctum');
 Route::delete('/stores/{store}', [StoreController::class, 'destroy'])->middleware('auth:sanctum');
+Route::get('/user/stores', [StoreController::class, 'userStores'])->middleware('auth:sanctum');
