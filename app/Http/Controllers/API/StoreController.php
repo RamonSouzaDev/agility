@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Store;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class StoreController extends Controller
@@ -26,8 +27,9 @@ class StoreController extends Controller
             return response()->json(['message' => 'Invalid CEP'], 422);
         }
 
-        // Criar a loja
-        $store = Store::create([
+        // Criar a loja associada ao usuário logado
+        $user = Auth::user();
+        $store = $user->stores()->create([
             'name' => $request->name,
             'cep' => $request->cep,
             'street' => $data['logradouro'],
@@ -36,5 +38,13 @@ class StoreController extends Controller
         ]);
 
         return response()->json(['message' => 'Store created successfully', 'store' => $store], 201);
+    }
+
+    public function index(Request $request)
+    {
+        $user = Auth::user();
+        $stores = $user->stores;
+
+        return response()->json(['stores' => $stores], 200);
     }
 }
