@@ -4,24 +4,23 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class AddAddressColumnsToStoresTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
-        Schema::create('stores', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('stores', function (Blueprint $table) {
+            $table->string('street')->nullable();
+            $table->string('neighborhood')->nullable();
+            $table->string('city')->nullable();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('stores');
+        Schema::table('stores', function (Blueprint $table) {
+            $table->dropColumn('street');
+            $table->dropColumn('neighborhood');
+            $table->dropColumn('city');
+        });
     }
-};
+}
