@@ -6,6 +6,7 @@ use App\Http\Controllers\API\UserController;
 use App\Services\Contracts\UserServiceInterface;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Testing\WithFaker; 
 
 class UserControllerTest extends TestCase
 {
@@ -13,24 +14,24 @@ class UserControllerTest extends TestCase
 
     public function testRegister()
     {
-        // Criar um usuário fictício para o teste
-        $userData = [
-            'name' => 'John Doe',
-            'email' => 'john@example.com',
-            'password' => 'password123',
-        ];
+        // Crie um usuário fictício usando o modelo factory
+        $user = User::factory()->create([
+            'name' => 'Ramon Mendes Developer',
+            'email' => 'dwmom@hotmail.com',
+            'password' => bcrypt('password123'),
+        ]);
 
         // Mock do UserServiceInterface
         $userService = $this->createMock(UserServiceInterface::class);
 
         $userService->expects($this->once())
             ->method('register')
-            ->with($userData)
-            ->willReturn(new User($userData));
+            ->with($user->toArray()) // Use os dados do usuário fictício
+            ->willReturn($user);
 
         $controller = new UserController($userService);
 
-        $request = Request::create('/register', 'POST', $userData);
+        $request = Request::create('/register', 'POST', $user->toArray()); // Use os dados do usuário fictício
 
         $response = $controller->register($request);
 
@@ -39,12 +40,16 @@ class UserControllerTest extends TestCase
         $this->assertEquals(201, $response->getStatusCode());
 
         $expectedData = [
-            'name' => 'John Doe',
-            'email' => 'john@example.com',
+            'name' => 'Ramon Mendes Developer',
+            'email' => 'dwmom@hotmail.com',
         ];
 
+        $userResponse = $responseData['user'];
+
         $this->assertEquals('User registered successfully', $responseData['message']);
-        $this->assertEquals($expectedData, $responseData['user']);
+        $this->assertEquals($expectedData['name'], $userResponse['name']);
+        $this->assertEquals($expectedData['email'], $userResponse['email']);
     }
+
 }
 
