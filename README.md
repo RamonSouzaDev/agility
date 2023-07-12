@@ -58,7 +58,7 @@ Requisições para a API devem seguir os padrões:
 | `POST` | /login | Rota para fazer login |
 ```json
 {
-  "email": "dwmom@hotmail.com",
+  "email": "emaildousuario@hotmail.com",
   "password": "developer"
 }
 ```
@@ -66,6 +66,10 @@ Requisições para a API devem seguir os padrões:
 |---|---|---|
 | `POST` | /logout | Rota para fazer logout |
 ```json
+{
+  "email": "emaildousuario@hotmail.com",
+  "password": "developer"
+}
 
 ```
 | Método | Rota | Descrição |
