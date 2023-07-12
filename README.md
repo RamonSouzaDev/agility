@@ -41,6 +41,8 @@ php artisan serve
 
 - **Rotas**
 
+Obs: Lembre de adicionar o Bearer Token do usuário logado na requisição.
+
 ## Métodos
 Requisições para a API devem seguir os padrões:
 | Método | Rota | Descrição |
@@ -55,7 +57,7 @@ Requisições para a API devem seguir os padrões:
 ```
 | Método | Rota | Descrição |
 |---|---|---|
-| `POST` | /login | Rota para fazer login |
+| `POST` | /api/login | Rota para fazer login |
 ```json
 {
   "email": "emaildousuario@hotmail.com",
@@ -64,7 +66,7 @@ Requisições para a API devem seguir os padrões:
 ```
 | Método | Rota | Descrição |
 |---|---|---|
-| `POST` | /logout | Rota para fazer logout |
+| `POST` | /api/logout | Rota para fazer logout |
 ```json
 {
   "email": "emaildousuario@hotmail.com",
@@ -74,14 +76,28 @@ Requisições para a API devem seguir os padrões:
 ```
 | Método | Rota | Descrição |
 |---|---|---|
-| `POST` | /stores | Rota para cadastrar uma Loja |
+| `POST` | /api/stores | Rota para cadastrar uma Loja |
 ```json
 {
     "name" : "Primeira Loja",
     "cep" : "07023-022"
 }
 ```
-| `GET` | /stores | Rota para listar todas as rotas |
-| `GET` | /stores/stores | Rota para listar as Lojas do usuário logado |
-| `PUT` | '/stores/{store} | Rota para Editar uma Loja|
+| Método | Rota | Descrição |
+|---|---|---|
+| `GET` | /api/stores | Rota para listar todas as rotas |
+| Método | Rota | Descrição |
+|---|---|---|
+| `GET` | /api/stores/stores | Rota para listar as Lojas do usuário logado |
+| Método | Rota | Descrição |
+|---|---|---|
+| `PUT` | '/api/stores/{store} | Rota para Editar uma Loja|
+```json
+{
+    "name" : "Primeira Loja Editada",
+    "cep" : "07097-380"
+}
+```
+| Método | Rota | Descrição |
+|---|---|---|
 | `DELETE` | '/stores/{store} | Rota para deletar uma Loja |

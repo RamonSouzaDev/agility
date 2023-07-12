@@ -25,7 +25,7 @@ class UserController extends Controller
         ]);
 
         // Enviar o email de boas-vindas
-        Mail::to($user->email)->send(new WelcomeEmail());
+        //Mail::to($user->email)->send(new WelcomeEmail());
 
         return response()->json(['message' => 'User registered successfully', 'user' => $user], 201);
     }
