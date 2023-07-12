@@ -39,6 +39,10 @@ php artisan migrate
 7. Execute o projeto
 php artisan serve
 
+**Testes Unitários**
+
+1. Execute o comando  ./vendor/bin/phpunit
+
 - **Rotas**
 
 Obs: Lembre de adicionar o Bearer Token do usuário logado na requisição.
