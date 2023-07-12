@@ -43,6 +43,14 @@ php artisan serve
 
 1. Execute o comando  ./vendor/bin/phpunit
 
+**Executando pelo docker**
+
+1. Execute o comando docker-compose up -d --build
+
+2. Entre no container e execute o composer install
+
+3. Executo o comando php artisan migrate
+
 - **Rotas**
 
 Obs: Lembre de adicionar o Bearer Token do usuário logado na requisição.
