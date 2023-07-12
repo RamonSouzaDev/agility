@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('street')->nullable();
             $table->string('neighborhood')->nullable();
             $table->string('city')->nullable();
+            $table->timestamps();
         });
     }
 

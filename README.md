@@ -53,6 +53,7 @@ Requisições para a API devem seguir os padrões:
   "password": "developer"
 }
 ```
+|  |  |  |
 |---|---|---|
 | `POST` | /login | Rota para fazer login |
 ```json
@@ -61,8 +62,21 @@ Requisições para a API devem seguir os padrões:
   "password": "developer"
 }
 ```
+|  |  |  |
+|---|---|---|
 | `POST` | /logout | Rota para fazer logout |
+```json
+
+```
+|  |  |  |
+|---|---|---|
 | `POST` | /stores | Rota para cadastrar uma Loja |
+```json
+{
+    "name" : "Primeira Loja",
+    "cep" : "07023-022"
+}
+```
 | `GET` | /stores | Rota para listar todas as rotas |
 | `GET` | /stores/stores | Rota para listar as Lojas do usuário logado |
 | `PUT` | '/stores/{store} | Rota para Editar uma Loja|
