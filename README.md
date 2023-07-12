@@ -53,7 +53,7 @@ Requisições para a API devem seguir os padrões:
   "password": "developer"
 }
 ```
-|  |  |  |
+| Método | Rota | Descrição |
 |---|---|---|
 | `POST` | /login | Rota para fazer login |
 ```json
@@ -62,13 +62,13 @@ Requisições para a API devem seguir os padrões:
   "password": "developer"
 }
 ```
-|  |  |  |
+| Método | Rota | Descrição |
 |---|---|---|
 | `POST` | /logout | Rota para fazer logout |
 ```json
 
 ```
-|  |  |  |
+| Método | Rota | Descrição |
 |---|---|---|
 | `POST` | /stores | Rota para cadastrar uma Loja |
 ```json
