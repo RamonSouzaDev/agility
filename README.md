@@ -55,7 +55,7 @@ php artisan serve
 
 Obs: Lembre de adicionar o Bearer Token do usuário logado na requisição.
 
-## Métodos
+## Métodos 🔥🔥🔥
 Requisições para a API devem seguir os padrões:
 | Método | Rota | Descrição |
 |---|---|---|
