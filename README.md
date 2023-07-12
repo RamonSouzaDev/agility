@@ -39,7 +39,7 @@ php artisan migrate
 7. Execute o projeto
 php artisan serve
 
-**Testes Unitários**
+**Testes Unitários** 💡
 
 1. Execute o comando  ./vendor/bin/phpunit
 
