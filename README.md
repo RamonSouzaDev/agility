@@ -85,7 +85,7 @@ Requisições para a API devem seguir os padrões:
 ```
 | Método | Rota | Descrição |
 |---|---|---|
-| `GET` | /api/stores | Rota para listar todas as rotas |
+| `GET` | /api/stores | Rota para listar todas as Lojas, independente do usuário Logado |
 
 | Método | Rota | Descrição |
 |---|---|---|
