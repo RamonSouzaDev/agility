@@ -51,5 +51,47 @@ class UserControllerTest extends TestCase
         $this->assertEquals($expectedData['email'], $userResponse['email']);
     }
 
+    public function testLogin()
+    {
+        // Crie um usuário fictício usando o modelo factory
+        $user = User::factory()->create([
+            'email' => 'test@example.com',
+            'password' => bcrypt('password123'),
+        ]);
+    
+        $credentials = [
+            'email' => 'test@example.com',
+            'password' => 'password123',
+        ];
+    
+        // Mock do Auth facade
+        $this->app->bind('auth', function ($app) use ($credentials, $user) {
+            $authMock = $this->createMock('Illuminate\Contracts\Auth\Factory');
+    
+            $authMock->expects($this->once())
+                ->method('attempt')
+                ->with($credentials)
+                ->willReturn(true);
+    
+            $authMock->shouldReceive('user')
+                ->andReturn($user);
+    
+            return $authMock;
+        });
+    
+        // Inicialize o controlador UserController com a dependência UserServiceInterface
+        $userService = $this->createMock(UserServiceInterface::class);
+        $controller = new UserController($userService);
+    
+        // Criar uma instância da classe Request com os dados de credenciais
+        $request = Request::create('/login', 'POST', $credentials);
+    
+        $response = $controller->login($request);
+
+        $responseData = json_decode($response->getContent(), true);
+    
+        $this->assertEquals(200, $response->getStatusCode());
+    }
+
 }
 
