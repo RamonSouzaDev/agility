@@ -7,7 +7,7 @@ services:
     image: laravel-app
     container_name: laravel-app
     ports:
-      - 8000:8000
+      - 9000:9000
     volumes:
       - .:/var/www/html
     networks:
