@@ -60,6 +60,7 @@ Execute os comandos abaixo para gerar dados
 - **Rotas**
 
 Obs: Lembre de adicionar o Bearer Token do usuário logado na requisição.
+Obs: Para efetuar o disparo do email descomente a linha de 27 na classe UserService
 
 ## Métodos 🔥🔥🔥
 Requisições para a API devem seguir os padrões:
