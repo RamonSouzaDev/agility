@@ -34,7 +34,7 @@ class UserService implements UserServiceInterface
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             $token = $user->createToken('AuthToken')->plainTextToken;
-
+            
             return [
                 'message' => 'Login successful',
                 'user' => $user,

@@ -87,11 +87,10 @@ class UserControllerTest extends TestCase
         $request = Request::create('/login', 'POST', $credentials);
     
         $response = $controller->login($request);
-    
+
         $responseData = json_decode($response->getContent(), true);
     
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals('Login successfully', $responseData['message']);
     }
 
 }

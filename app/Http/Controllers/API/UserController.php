@@ -31,7 +31,7 @@ class UserController extends Controller
         try {
             $credentials = $request->only('email', 'password');
             $response = $this->userService->login($credentials);
-            return response()->json(['message' => 'Login successfully'], 200);
+            return response()->json($response, 200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()], 401);
         }
