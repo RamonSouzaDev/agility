@@ -44,11 +44,10 @@ php artisan serve
 1. Execute o comando  ./vendor/bin/phpunit
 
 **Seeders**
+Execute os comandos abaixo para gerar dados
 
-1. Execute o comando 
-php artisan db:seed --class=UserSeeder
-2. 
-php artisan db:seed --class=StoreSeeder
+1. php artisan db:seed --class=UserSeeder
+2. php artisan db:seed --class=StoreSeeder
 
 **Executando pelo docker** <p align="left"> <a href="https://www.docker.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="docker" width="40" height="40"/> </a>
 
