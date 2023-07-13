@@ -53,9 +53,7 @@ Execute os comandos abaixo para gerar dados
 
 1. Execute o comando docker-compose up -d --build
 
-2. Entre no container e execute o composer install
-
-3. Executo o comando php artisan migrate
+2. Entre no container agility_app e execute o comando : php artisan migrate
 
 - **Rotas**
 

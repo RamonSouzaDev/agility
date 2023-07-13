@@ -1,62 +1,42 @@
-# Use a imagem oficial do PHP 8.2
-FROM php:8.2-fpm
+FROM php:8.1-fpm
 
-# Atualize o sistema e instale as dependências necessárias
+# set your user name, ex: user=bernardo
+ARG user=ramon
+ARG uid=1000
+
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    build-essential \
-    libpng-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
-    locales \
-    zip \
-    jpegoptim optipng pngquant gifsicle \
-    vim \
-    unzip \
     git \
     curl \
+    libpng-dev \
     libonig-dev \
     libxml2-dev \
-    libzip-dev \
     zip \
-    unzip \
-    libpq-dev \
-    && rm -rf /var/lib/apt/lists/*
+    unzip
 
-# Limpe o cache do sistema de pacotes
+# Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Instale as extensões PHP necessárias
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd sockets
 
-# Instale o Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# Get latest Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Defina o diretório de trabalho no contêiner
-WORKDIR /var/www/html
+# Create system user to run Composer and Artisan Commands
+RUN useradd -G www-data,root -u $uid -d /home/$user $user
+RUN mkdir -p /home/$user/.composer && \
+    chown -R $user:$user /home/$user
 
-# Copie o arquivo composer.json e o arquivo composer.lock para o diretório de trabalho
-COPY composer.json composer.lock ./
+# Install redis
+RUN pecl install -o -f redis \
+    &&  rm -rf /tmp/pear \
+    &&  docker-php-ext-enable redis
 
-# Instale as dependências do Laravel usando o Composer
-RUN composer install --no-scripts --no-autoloader
+# Set working directory
+WORKDIR /var/www
 
-# Copie todo o código do projeto para o diretório de trabalho
-COPY . .
+# Copy custom configurations PHP
+COPY docker/php/custom.ini /usr/local/etc/php/conf.d/custom.ini
 
-# Execute o comando de atualização do Composer para gerar o autoload
-RUN composer dump-autoload
-
-# Defina as permissões adequadas para o diretório de armazenamento do Laravel
-RUN chown -R www-data:www-data storage
-
-# Configure o arquivo de ambiente .env
-RUN cp .env.example .env
-
-# Gere a chave do aplicativo Laravel
-RUN php artisan key:generate
-
-# Exponha a porta 9000
-EXPOSE 9000
-
-# Comando de inicialização do servidor PHP-FPM
-CMD ["php-fpm"]
+USER $user
