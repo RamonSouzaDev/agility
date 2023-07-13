@@ -47,6 +47,7 @@ php artisan serve
 
 1. Execute o comando 
 php artisan db:seed --class=UserSeeder
+2. 
 php artisan db:seed --class=StoreSeeder
 
 **Executando pelo docker** <p align="left"> <a href="https://www.docker.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="docker" width="40" height="40"/> </a>
@@ -111,7 +112,7 @@ Requisições para a API devem seguir os padrões:
 
 | Método | Rota | Descrição |
 |---|---|---|
-| `PUT` | '/api/stores/{store} | Rota para Editar uma Loja|
+| `PUT` | /api/stores/{store} | Rota para Editar uma Loja|
 ```json
 {
     "name" : "Primeira Loja Editada",
@@ -120,4 +121,4 @@ Requisições para a API devem seguir os padrões:
 ```
 | Método | Rota | Descrição |
 |---|---|---|
-| `DELETE` | '/stores/{store} | Rota para deletar uma Loja |
+| `DELETE` | /api/stores/{store} | Rota para deletar uma Loja |
